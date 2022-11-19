@@ -1,0 +1,56 @@
+<div class="container" style="background-color: #FFFFFF;"> 
+  <div id="products">
+  <br>
+    <div class="row ml-0 mt-3">
+      <h2>Tu carrito</h2>
+    </div>
+    <div class="row ml-0 mt-2">
+      <p>Revisa tus productos antes de prodecer al pago:</p>
+    </div>
+    <div class="row ml-0">
+      <p id="notice">
+        <%= notice %>
+      </p>
+      <table class="table">
+        <thead>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Opcion</th>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item[:product].name %></td>
+              <td><%= item[:product].price %></td>
+              <td><%= item[:amount] %></td>
+              <td><%= button_to "Eliminar", "shopping_cart/remove/#{item[:product].id}", method: :post, class: "btn btn-danger"%></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td><strong>Grand Total</strong></td>
+            <td><%= @total %></td>
+            <td><%= cart_item_count %></td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <%= link_to 'Seguir viendo', productos_path %>
+      </p>
+    </div>
+  </div>
+  <div id="payment" class="row"">
+      <div class="col-7">
+      </div>
+      <div class="col-5">
+        <h3><%=link_to "Realizar pago", root_path, class: "text-decoration-none", style: "color: black;" %></h3>
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-5">
+          <%=link_to image_tag("transbank.png", width: "80%", height: "80%", background: "#FFFFFF"), root_path %>
+      </div>
+  </div>
+</div>
+

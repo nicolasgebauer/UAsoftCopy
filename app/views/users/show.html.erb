@@ -1,0 +1,39 @@
+<br>
+<div class="container" style="background-color: white; padding-left: 10%; padding-right: 2%; height: 630px;">
+  <br>
+  <h3>Tu perfil</h3>
+  <br>
+  <span style=" float: left; width: 50%">
+    <%= render @user %>
+    <%= fields_for @user do |form| %>
+        <div>
+          <br>
+          <font size="+1"  style="font-weight: 500">Nombre</font>
+          <%= form.text_field :name, class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
+          <br>
+          <font size="+1"  style="font-weight: 500">Apellido</font>
+          <%= form.text_field :last_name, class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
+          <br>
+          <font size="+1"  style="font-weight: 500">Email</font>
+          <%= form.email_field :email, class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
+          <br>
+          <font size="+1"  style="font-weight: 500">Contraseña</font>
+          <%= form.password_field :password,value: "123456", class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
+          <br>
+          <font size="+1"  style="font-weight: 500">Numero Telefonico</font>
+          <%= form.text_field :phone, class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
+          <br>
+          <%= link_to "Editar Informacion", edit_user_registration_path, class: "btn btn-primary",  style: "background-color: #FC83E2; border-color: #FC83E2" %>
+        </div>
+    <% end %>
+  </span>
+  <span style=" float:right; padding-right: 5%; padding-top: 5%">
+    <%(1..17).each do |n| %>
+    <br>
+      <%end %>
+    <div style=" float:right">
+    <%= image_tag("transbank.png", width: "280dp", height: "150dp", background: "#FFFFFF") %>
+    </div>
+  </span>
+  <br>
+</div>

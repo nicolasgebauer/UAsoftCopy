@@ -1,0 +1,6 @@
+<br>
+<div class="row">
+  <% products.each do |product| %>
+    <%= render partial: 'products/product_tile', locals: { product: product } %>
+  <% end %>
+</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UAsoft</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+<body style="background-color: white">
+  <header>
+    <nav class="navbar fixed-top">
+      <div class="container-fluid">
+        <span style="float: left">
+        <% if user_signed_in? %>
+          <%= link_to image_tag("uasoft.png", width: "150", height: "75", background: "#FFFFFF"), productos_path, class: "navbar-brand", style: "margin-left:.5em" %>
+        <% else %>
+          <%= link_to image_tag("uasoft.png", width: "150", height: "75", background: "#FFFFFF"), root_path, class: "navbar-brand", style: "margin-left:.5em" %>
+        <% end %>
+          Foods Taste Better When It´s On Time
+        </span>
+        <%(1..17).each do |n| %>
+          <span></span>
+        <%end %>
+        
+        <% if !user_signed_in? %>
+          <span style="float: left">
+            <%= button_to("Iniciar Sesión", new_user_session_path, class: "btn btn-primary", style: "color: black; background-color: white; border-color: black")%>
+          </span>
+          <span style="float: left">
+            <%= link_to("Registrarse", new_user_registration_path, class: "btn btn-primary", style: "background-color: #FC83E2; border-color: #FC83E2", method: "get")%>
+          </span>
+        <% else %>
+          <span style="padding-left: 40%">
+              <%=link_to image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF"), user_path(current_user)%>
+          </span>
+          <%= content_tag :a, { href: shopping_cart_path } do %> <%=image_tag("cart.svg", width: "24em") %> 
+            <span class="badge badge-danger" style="color:black;">
+            <% unless cart_item_count == 0%>
+              <%= cart_item_count %>
+            <% else %>
+              &nbsp;
+            <% end %>
+            </span>
+          <% end %>
+          <span class="navbar-text">
+            <%= button_to("Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-secondary") %>
+          </span>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+  <main id="main_content">
+    <!-- 
+    <p class="notice"> <%= notice %></p>
+    <p class="alert"> <%= alert %></p>
+    -->
+    <%= yield %>
+  </main>
+</body>
+</html>
